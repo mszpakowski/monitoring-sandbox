@@ -8,7 +8,8 @@
 use Mix.Config
 
 config :monitoring_sandbox,
-  ecto_repos: [MonitoringSandbox.Repo]
+  ecto_repos: [MonitoringSandbox.Repo],
+  grafana_password: {:system, "GRAFANA_PASSWORD"}
 
 # Configures the endpoint
 config :monitoring_sandbox, MonitoringSandboxWeb.Endpoint,
@@ -28,3 +29,6 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
+config :monitoring_sandbox, MonitoringSandbox.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  loggers: [MonitoringSandbox.Instrumenters.Ecto]

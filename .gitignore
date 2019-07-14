@@ -28,3 +28,5 @@ monitoring_sandbox-*.tar
 /priv/static/
 
 .elixir_ls
+
+.envrc

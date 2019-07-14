@@ -33,6 +33,8 @@ defmodule MonitoringSandbox.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:castore, "~> 0.1.2"},
+      {:confex, "~> 3.4"},
       {:phoenix, "~> 1.4.6"},
       {:phoenix_pubsub, "~> 1.1"},
       {:phoenix_ecto, "~> 4.0"},
@@ -40,7 +42,14 @@ defmodule MonitoringSandbox.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:mint, "~> 0.2.1"},
+      {:plug_cowboy, "~> 2.0"},
+      {:poison, "~> 4.0"},
+      {:prometheus_ex, "~> 3.0"},
+      {:prometheus_plugs, "~> 1.1"},
+      {:prometheus_phoenix, "~> 1.2"},
+      {:prometheus_ecto, "~> 1.4"},
+      {:prometheus_process_collector, "~> 1.4"}
     ]
   end
 
