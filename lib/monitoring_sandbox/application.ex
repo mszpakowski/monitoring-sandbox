@@ -20,6 +20,11 @@ defmodule MonitoringSandbox.Application do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: MonitoringSandbox.Supervisor]
     Confex.resolve_env!(:my_app)
+    Prometheus.Registry.register_collector(:prometheus_process_collector)
+    MonitoringSandbox.Instrumenters.Phoenix.setup()
+    MonitoringSandbox.Instrumenters.Pipeline.setup()
+    MonitoringSandbox.Instrumenters.Ecto.setup()
+    MonitoringSandbox.Instrumenters.PrometheusExporter.setup()
     Supervisor.start_link(children, opts)
   end
 

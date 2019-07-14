@@ -57,5 +57,8 @@ defmodule MonitoringSandboxWeb.Endpoint do
     key: "_monitoring_sandbox_key",
     signing_salt: "80aTcpYj"
 
+  plug MonitoringSandbox.Instrumenters.PrometheusExporter
+  plug MonitoringSandbox.Instrumenters.Pipeline
+
   plug MonitoringSandboxWeb.Router
 end
