@@ -25,6 +25,7 @@ defmodule MonitoringSandbox.Application do
     MonitoringSandbox.Instrumenters.Pipeline.setup()
     MonitoringSandbox.Instrumenters.Ecto.setup()
     MonitoringSandbox.Instrumenters.PrometheusExporter.setup()
+    MonitoringSandbox.Instrumenters.Cats.setup()
     Supervisor.start_link(children, opts)
   end
 
