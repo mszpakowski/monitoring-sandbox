@@ -7,14 +7,7 @@ defmodule MonitoringSandbox.Application do
 
   def start(_type, _args) do
     # List all child processes to be supervised
-    children = [
-      # Start the Ecto repository
-      MonitoringSandbox.Repo,
-      # Start the endpoint when the application starts
-      MonitoringSandboxWeb.Endpoint
-      # Starts a worker by calling: MonitoringSandbox.Worker.start_link(arg)
-      # {MonitoringSandbox.Worker, arg},
-    ]
+    children = default_children() ++ maybe_simulator()
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
@@ -34,5 +27,15 @@ defmodule MonitoringSandbox.Application do
   def config_change(changed, _new, removed) do
     MonitoringSandboxWeb.Endpoint.config_change(changed, removed)
     :ok
+  end
+
+  defp default_children do
+    [MonitoringSandbox.Repo, MonitoringSandboxWeb.Endpoint]
+  end
+
+  defp maybe_simulator() do
+    if Confex.fetch_env!(:monitoring_sandbox, MonitoringSandboxWeb.RequestSimulator)[:enabled?],
+      do: [{MonitoringSandboxWeb.RequestSimulator, 10_000}],
+      else: []
   end
 end

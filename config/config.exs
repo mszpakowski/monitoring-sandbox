@@ -11,6 +11,8 @@ config :monitoring_sandbox,
   ecto_repos: [MonitoringSandbox.Repo],
   grafana_password: {:system, "GRAFANA_PASSWORD"}
 
+config :monitoring_sandbox, MonitoringSandboxWeb.RequestSimulator, enabled?: false
+
 # Configures the endpoint
 config :monitoring_sandbox, MonitoringSandboxWeb.Endpoint,
   url: [host: "localhost"],

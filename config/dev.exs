@@ -1,5 +1,12 @@
 use Mix.Config
 
+config :monitoring_sandbox,
+  protocol: {:system, :atom, "APP_URL_PROTOCOL", :http},
+  host: {:system, "APP_URL_HOST", "localhost"},
+  port: {:system, :integer, "APP_URL_PORT", 4000}
+
+config :monitoring_sandbox, MonitoringSandboxWeb.RequestSimulator, enabled?: true
+
 # Configure your database
 config :monitoring_sandbox, MonitoringSandbox.Repo,
   username: "postgres",
