@@ -7,5 +7,7 @@ defmodule MonitoringSandboxWeb.Router do
 
   scope "/v1", MonitoringSandboxWeb do
     pipe_through :api
+
+    post "/cats", CatController, :create
   end
 end
